@@ -1,4 +1,7 @@
 NycEnv::Application.routes.draw do
+
+  # get 'index' => 'maps#index'
+  root :to => 'maps#index'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
