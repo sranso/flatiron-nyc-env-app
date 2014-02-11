@@ -5,7 +5,8 @@
   <h3>Data Set</h3>
   <% @datasets.each do |dataset| %>
     <label for="data-set"><%= dataset %></label>
-    <input type="checkbox" id="data-set-id" name="dataset[<%= dataset %>]">
+    <input type="checkbox" id="data-set-id" name="datasets[<%= dataset %>]">
   <% end %>
+
   <button type="submit" value="Filter">Filter Results</button>
 </form>

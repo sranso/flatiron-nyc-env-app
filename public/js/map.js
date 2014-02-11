@@ -5,8 +5,10 @@ function initialize() {
     center: new google.maps.LatLng(40.6700, -73.9400)
   };
 
+  // create that map
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
+  // set content of pop-up box
   var contentString = '<div id="content">' +
       '<div id="siteNotice">' +
       '</div>' +
@@ -21,26 +23,39 @@ function initialize() {
       '</div>' +
       '</div>';
 
+  // create info window
   var infowindow = new google.maps.InfoWindow({
     content: contentString
   });
 
+  // create a marker
   var marker = new google.maps.Marker({
     position: new google.maps.LatLng(40.6700, -73.9400),
     map: map,
     title: 'Uluru'
   });
 
-  // when marker clicked, show contentString
+  // when marker clicked, show info window
   google.maps.event.addListener(marker, 'click', function(){
     infowindow.open(map, marker);
   });
 }
 
+// load the map
 google.maps.event.addDomListener(window, 'load', initialize);
 
+// this will actually be passed in as an object... tbd how yet
+var datasetsShow = ["NYC Cool Roofs Buildings", "NYC Greenthumb Community Gardens"]
+for (i = 0; i < datasetsShow.length; i++) {
+  var fileName = datasetsShow[i].replace(" ", "-");
+  // this is the path to the file
+  "data/" + fileName + ".json";
+  // this should get assed to the getJSON method, one at a time?
+};
+
+// load data
 var data;
-$.getJSON("data/cool-roofs.json", function(response) {
+$.getJSON("data/NYC-Cool-Roofs-Buildings.json", function(response) {
   data = response;
   // for (var i = 0; i < data.data.length; i++) {
     var newLatLon = new google.maps.LatLng(data.data[0][13][1], data.data[0][13][2])
@@ -56,8 +71,9 @@ $.getJSON("data/cool-roofs.json", function(response) {
   // };
 });
 
+// load data
 // var data;
-// $.getJSON("data.json", function(response) {
+// $.getJSON("data/NYC-Cool-Roofs-Buildings.json", function(response) {
 //   data = response;
 //   for (var i = 0; i < data.data.length; i++) {
 //     var newLatLon = new google.maps.LatLng(data.data[i][13][1], data.data[i][13][2])

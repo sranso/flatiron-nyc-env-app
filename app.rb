@@ -33,11 +33,14 @@ module Name
       Dir.glob('./public/data/*.json') do |model|
         @datasets << MultiJson.load(File.open(model).read)["meta"]["view"]["name"]
       end
-      # @neighborhoods = 
+      # @neighborhoods = []
+      
       erb :form
     end
 
     post '/filter' do
+      @datasetsShow = params["datasets"].keys
+      # @neighborhoodsShow = params["neighborhoods"].keys
       erb :form_results
     end
 
