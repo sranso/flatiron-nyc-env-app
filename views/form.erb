@@ -10,14 +10,21 @@
   <button type="submit" value="Filter">Filter Results</button>
 </form>
 
+<div id="panel">
+  <input id="address" type="textbox" value="Sydney, NSW">
+  <input type="button" value="Geocode" onclick="codeAddress()">
+</div>
 <div id="map-canvas"></div>
 
 <script type="text/javascript">
   //initialize map
+  var geocoder;
   var map;
   var markers = [];
 
   function initialize() {
+    geocoder = new google.maps.Geocoder();
+
     var mapOptions = {
       zoom: 10,
       center: new google.maps.LatLng(40.6700, -73.9400)
@@ -26,12 +33,21 @@
     // create that map
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   
-    // ADD MARKER
-    google.maps.event.addListener(map, 'click', function(event) {
-      addMarker(event.latLng);
-    });
   }
 
+  // find position on map by addresss
+  function codeAddress(address) {
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
   // Add a marker to the map and push to the array.
   function addMarker(location) {
     var marker = new google.maps.Marker({
@@ -70,7 +86,7 @@
       $this.addClass("selected");
       // load the dataset
       $.getJSON(fileName, function(response) {
-        debugger
+        // debugger
         // the following works for nyc-cool-roofs
         for (var i = 0; i < response.data.length; i++) {
           var newLatLon = new google.maps.LatLng(response.data[i][13][1], response.data[i][13][2])
