@@ -1,4 +1,8 @@
-var map;
+<html>
+<script type="text/javascript">
+$("#myinput").click(function() {
+$this.att()
+  var map;
 function initialize() {
   var mapOptions = {
     zoom: 10,
@@ -46,13 +50,16 @@ google.maps.event.addDomListener(window, 'load', initialize);
 
 // this will actually be passed in as an object... tbd how yet
 var datasetsShow = ["NYC Cool Roofs Buildings", "NYC Greenthumb Community Gardens"]
+var newData = []
 for (i = 0; i < datasetsShow.length; i++) {
   var fileName = datasetsShow[i].replace(" ", "-");
   // this is the path to the file
+  // push in..
   "data/" + fileName + ".json";
   // this should get assed to the getJSON method, one at a time?
 };
 
+// NEXT UP: ADD INFOWINDOW FOR EACH MARKER
 // load data
 // var data;
 // $.getJSON("data/NYC-Cool-Roofs-Buildings.json", function(response) {
@@ -88,3 +95,8 @@ $.getJSON("/data/NYC-Cool-Roofs-Buildings.json", function(response) {
     });
   };
 });
+})
+
+</script>
+</html>  
+

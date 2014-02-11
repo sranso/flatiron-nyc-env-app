@@ -34,7 +34,6 @@ module Name
         @datasets << MultiJson.load(File.open(model).read)["meta"]["view"]["name"]
       end
       # @neighborhoods = []
-      
       erb :form
     end
 
