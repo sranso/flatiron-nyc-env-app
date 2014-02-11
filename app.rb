@@ -21,14 +21,6 @@ module Name
 
     #routes
     get '/' do
-      erb :index
-    end
-
-    get '/map' do
-      erb :map
-    end
-
-    get '/filter' do
       @datasets = []
       Dir.glob('./public/data/*.json') do |model|
         @datasets << MultiJson.load(File.open(model).read)["meta"]["view"]["name"]
