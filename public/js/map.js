@@ -1,8 +1,4 @@
-<html>
-<script type="text/javascript">
-$("#myinput").click(function() {
-$this.att()
-  var map;
+var map;
 function initialize() {
   var mapOptions = {
     zoom: 10,
@@ -81,7 +77,6 @@ for (i = 0; i < datasetsShow.length; i++) {
 // load data
 var data;
 $.getJSON("/data/NYC-Cool-Roofs-Buildings.json", function(response) {
-  console.log("test");
   data = response;
   for (var i = 0; i < data.data.length; i++) {
     var newLatLon = new google.maps.LatLng(data.data[i][13][1], data.data[i][13][2])
@@ -95,8 +90,3 @@ $.getJSON("/data/NYC-Cool-Roofs-Buildings.json", function(response) {
     });
   };
 });
-})
-
-</script>
-</html>  
-
