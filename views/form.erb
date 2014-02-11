@@ -64,7 +64,7 @@
     if (markers[objectName()] === undefined) {markers[objectName()] = [];};
     if ($this.hasClass("selected")) {
       $this.removeClass("selected");
-      clearMarkers();
+      clearMarkers(objectName());
     } else {
       $this.addClass("selected");
       if (fileName == "data/NYC-Cool-Roofs-Buildings.json") {
