@@ -31,6 +31,7 @@ function initialize() {
     title: 'Uluru'
   });
 
+  // when marker clicked, show contentString
   google.maps.event.addListener(marker, 'click', function(){
     infowindow.open(map, marker);
   });
@@ -39,7 +40,7 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
 var data;
-$.getJSON("data/map.json", function(response) {
+$.getJSON("data/cool-roofs.json", function(response) {
   data = response;
   // for (var i = 0; i < data.data.length; i++) {
     var newLatLon = new google.maps.LatLng(data.data[0][13][1], data.data[0][13][2])

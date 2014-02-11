@@ -29,6 +29,11 @@ module Name
     end
 
     get '/filter' do
+      @datasets = []
+      Dir.glob('./public/data/*.json') do |model|
+        @datasets << MultiJson.load(File.open(model).read)["meta"]["view"]["name"]
+      end
+      # @neighborhoods = 
       erb :form
     end
 

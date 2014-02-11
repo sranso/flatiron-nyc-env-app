@@ -7,6 +7,7 @@ gem "activerecord"
 gem "sinatra-activerecord"
 gem "rake"
 gem "haml"
+gem "debugger"
 
 group :development do
   gem "shotgun"
