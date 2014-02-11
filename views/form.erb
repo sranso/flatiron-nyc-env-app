@@ -70,8 +70,14 @@
       $this.addClass("selected");
       // load the dataset
       $.getJSON(fileName, function(response) {
-        // debugger
+        debugger
         // the following works for nyc-cool-roofs
+        for (var i = 0; i < response.data.length; i++) {
+          var newLatLon = new google.maps.LatLng(response.data[i][13][1], response.data[i][13][2])
+          addMarker(newLatLon);
+        };
+        // the following works for nyc-green-thumb
+        // response.data[0][13]; gives address
         for (var i = 0; i < response.data.length; i++) {
           var newLatLon = new google.maps.LatLng(response.data[i][13][1], response.data[i][13][2])
           addMarker(newLatLon);
