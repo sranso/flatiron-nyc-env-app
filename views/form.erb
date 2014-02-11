@@ -9,9 +9,8 @@
 
 <script type="text/javascript">
   //initialize map
-  var geocoder;
   var map;
-  var markers = [];
+  var markers = {};
 
   function initialize() {
     geocoder = new google.maps.Geocoder();
@@ -26,26 +25,14 @@
   
   }
 
-  // find position on map by addresss
-  function codeAddress(address) {
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      } else {
-        console.log('Geocode was not successful for the following reason: ' + status);
-      }
-    });
-  }
   // Add a marker to the map and push to the array.
-  function addMarker(location) {
+  function addMarker(location, objectName ) {
     var marker = new google.maps.Marker({
       position: location,
       map: map
     });
-    markers.push(marker);
+    // debugger
+    markers[objectName].push(marker);
   }
 
   // Sets the map on all markers in the array.
@@ -56,8 +43,10 @@
   }
 
   // Removes the markers from the map, but keeps them in the array.
-  function clearMarkers() {
-    setAllMap(null);
+  function clearMarkers(objectName) {
+    for (var i = 0; i < markers[objectName].length; i++) {
+      markers[objectName][i].setMap(null);
+    };
   }
 
   // load the map
@@ -69,6 +58,10 @@
     // get JSON file name
     var dataName = $this.parent("label").text();
     var fileName = "data/" + dataName.replace(/ /g, "-") + ".json";
+    function objectName() {
+      return dataName.replace(/ /g, "");
+    }
+    if (markers[objectName()] === undefined) {markers[objectName()] = [];};
     if ($this.hasClass("selected")) {
       $this.removeClass("selected");
       clearMarkers();
@@ -78,14 +71,14 @@
         $.getJSON(fileName, function(response) {
           for (var i = 0; i < response.data.length; i++) {
             var newLatLon = new google.maps.LatLng(response.data[i][13][1], response.data[i][13][2])
-            addMarker(newLatLon);
+            addMarker(newLatLon, objectName());
           };
         });
       } else if (fileName == "data/food-scraps.json") {
         $.getJSON(fileName, function(response) {
           for (var i = 0; i < response.data.length; i++) {
             var newLatLon = new google.maps.LatLng(response.data[i][10][1], response.data[i][10][2])
-            addMarker(newLatLon);
+            addMarker(newLatLon, objectName());
           };
         });
       };
