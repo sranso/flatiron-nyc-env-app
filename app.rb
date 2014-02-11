@@ -28,6 +28,14 @@ module Name
       erb :map
     end
 
+    get '/filter' do
+      erb :form
+    end
+
+    post '/filter' do
+      erb :form_results
+    end
+
     #helpers
     helpers do
       def partial(file_name)
