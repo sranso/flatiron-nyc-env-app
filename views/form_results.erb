@@ -60,12 +60,10 @@
 
   // load the datasets
   for (i = 0; i < newData.length; i++) {
-    var data;
     // nyc-cool-roofs
     $.getJSON(newData[i], function(response) {
       // debugger
-      data = response;
-      for (var i = 0; i < data.data.length; i++) {
+      for (var i = 0; i < response.data.length; i++) {
         var newLatLon = new google.maps.LatLng(data.data[i][13][1], data.data[i][13][2])
         var newMarker = new google.maps.Marker({
           position: newLatLon,

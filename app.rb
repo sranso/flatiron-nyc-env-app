@@ -37,11 +37,11 @@ module Name
       erb :form
     end
 
-    post '/filter' do
-      @datasetsShow = params["datasets"].keys
-      # @neighborhoodsShow = params["neighborhoods"].keys
-      erb :form_results
-    end
+    # post '/filter' do
+    #   @datasetsShow = params["datasets"].keys
+    #   # @neighborhoodsShow = params["neighborhoods"].keys
+    #   erb :form_results
+    # end
 
     #helpers
     helpers do
