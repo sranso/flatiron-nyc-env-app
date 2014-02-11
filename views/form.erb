@@ -58,10 +58,12 @@
     // get JSON file name
     var dataName = $this.parent("label").text();
     var fileName = "data/" + dataName.replace(/ /g, "-") + ".json";
+    
     function objectName() {
       return dataName.replace(/ /g, "");
     }
     if (markers[objectName()] === undefined) {markers[objectName()] = [];};
+    
     if ($this.hasClass("selected")) {
       $this.removeClass("selected");
       clearMarkers(objectName());
@@ -74,7 +76,7 @@
             addMarker(newLatLon, objectName());
           };
         });
-      } else if (fileName == "data/food-scraps.json") {
+      } else if (fileName == "data/Food-Scraps.json") {
         $.getJSON(fileName, function(response) {
           for (var i = 0; i < response.data.length; i++) {
             var newLatLon = new google.maps.LatLng(response.data[i][10][1], response.data[i][10][2])
