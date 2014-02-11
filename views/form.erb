@@ -81,11 +81,11 @@
             addMarker(newLatLon);
           };
         });
-      } else if (fileName == "data/NYC-Greenthumb-Community-Gardens.json") {
+      } else if (fileName == "data/food-scraps.json") {
         $.getJSON(fileName, function(response) {
           for (var i = 0; i < response.data.length; i++) {
-            var address = response.data[i][13];
-            codeAddress(address);
+            var newLatLon = new google.maps.LatLng(response.data[i][10][1], response.data[i][10][2])
+            addMarker(newLatLon);
           };
         });
       };
