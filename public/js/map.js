@@ -54,36 +54,37 @@ for (i = 0; i < datasetsShow.length; i++) {
 };
 
 // load data
-var data;
-$.getJSON("data/NYC-Cool-Roofs-Buildings.json", function(response) {
-  data = response;
-  // for (var i = 0; i < data.data.length; i++) {
-    var newLatLon = new google.maps.LatLng(data.data[0][13][1], data.data[0][13][2])
-    var newMarker = new google.maps.Marker({
-      position: newLatLon,
-      map: map,
-      placeName: 'name',
-      neighborhood: data.data[0][8],
-      placeStreet: data.data[0][10],
-      placeStreet2: data.data[0][11],
-      zip: data.data[0][12]
-    });
-  // };
-});
-
-// load data
 // var data;
 // $.getJSON("data/NYC-Cool-Roofs-Buildings.json", function(response) {
 //   data = response;
-//   for (var i = 0; i < data.data.length; i++) {
-//     var newLatLon = new google.maps.LatLng(data.data[i][13][1], data.data[i][13][2])
+//   // for (var i = 0; i < data.data.length; i++) {
+//     var newLatLon = new google.maps.LatLng(data.data[0][13][1], data.data[0][13][2])
 //     var newMarker = new google.maps.Marker({
 //       position: newLatLon,
 //       map: map,
-//       neighborhood: data.data[i][8],
-//       street: data.data[i][10],
-//       street2: data.data[i][11],
-//       zip: data.data[i][12]
+//       placeName: 'name',
+//       neighborhood: data.data[0][8],
+//       placeStreet: data.data[0][10],
+//       placeStreet2: data.data[0][11],
+//       zip: data.data[0][12]
 //     });
-//   };
+//   // };
 // });
+
+// load data
+var data;
+$.getJSON("/data/NYC-Cool-Roofs-Buildings.json", function(response) {
+  console.log("test");
+  data = response;
+  for (var i = 0; i < data.data.length; i++) {
+    var newLatLon = new google.maps.LatLng(data.data[i][13][1], data.data[i][13][2])
+    var newMarker = new google.maps.Marker({
+      position: newLatLon,
+      map: map,
+      neighborhood: data.data[i][8],
+      street: data.data[i][10],
+      street2: data.data[i][11],
+      zip: data.data[i][12]
+    });
+  };
+});
