@@ -10,10 +10,6 @@
   <button type="submit" value="Filter">Filter Results</button>
 </form>
 
-<div id="panel">
-  <input id="address" type="textbox" value="Sydney, NSW">
-  <input type="button" value="Geocode" onclick="codeAddress()">
-</div>
 <div id="map-canvas"></div>
 
 <script type="text/javascript">
@@ -44,7 +40,7 @@
             position: results[0].geometry.location
         });
       } else {
-        alert('Geocode was not successful for the following reason: ' + status);
+        console.log('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
@@ -85,20 +81,23 @@
     } else {
       $this.addClass("selected");
       // load the dataset
-      $.getJSON(fileName, function(response) {
-        // debugger
-        // the following works for nyc-cool-roofs
-        for (var i = 0; i < response.data.length; i++) {
-          var newLatLon = new google.maps.LatLng(response.data[i][13][1], response.data[i][13][2])
-          addMarker(newLatLon);
-        };
-        // the following works for nyc-green-thumb
-        // response.data[0][13]; gives address
-        for (var i = 0; i < response.data.length; i++) {
-          var newLatLon = new google.maps.LatLng(response.data[i][13][1], response.data[i][13][2])
-          addMarker(newLatLon);
-        };
-      });
+      // debugger
+      if (fileName == "data/NYC-Cool-Roofs-Buildings.json") {
+        $.getJSON(fileName, function(response) {
+          for (var i = 0; i < response.data.length; i++) {
+            var newLatLon = new google.maps.LatLng(response.data[i][13][1], response.data[i][13][2])
+            addMarker(newLatLon);
+          };
+        });
+      } else if (fileName == "data/NYC-Greenthumb-Community-Gardens.json") {
+        $.getJSON(fileName, function(response) {
+          for (var i = 0; i < response.data.length; i++) {
+            var address = response.data[i][13];
+            codeAddress(address);
+          };
+        });
+      };
+      
     };
     
     
