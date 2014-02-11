@@ -1,13 +1,8 @@
 <h1>Filter Results</h1>
 <form action="/filter" method="POST">
-
-  <h3>Data Set</h3>
   <% @datasets.each do |dataset| %>
-    <label for="data-set"><%= dataset %></label>
-    <input type="checkbox" class="data-set-class" name="datasets[<%= dataset %>]">
+    <label for="data-set" class="checkbox"><%= dataset %><input type="checkbox" class="data-set-class" name="datasets[<%= dataset %>]"></label>
   <% end %>
-
-  <button type="submit" value="Filter">Filter Results</button>
 </form>
 
 <div id="map-canvas"></div>
@@ -72,16 +67,13 @@
   $('.data-set-class').click(function() {
     var $this = $(this);
     // get JSON file name
-    var dataName = $this.prev("label").text();
+    var dataName = $this.parent("label").text();
     var fileName = "data/" + dataName.replace(/ /g, "-") + ".json";
-
     if ($this.hasClass("selected")) {
       $this.removeClass("selected");
       clearMarkers();
     } else {
       $this.addClass("selected");
-      // load the dataset
-      // debugger
       if (fileName == "data/NYC-Cool-Roofs-Buildings.json") {
         $.getJSON(fileName, function(response) {
           for (var i = 0; i < response.data.length; i++) {
