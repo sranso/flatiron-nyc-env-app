@@ -14,11 +14,6 @@ module Name
       set :public_folder, 'public'
     end
 
-    #database
-    set :database, "sqlite3:///database.db"
-
-    #filters
-
     #routes
     get '/' do
       @datasets = []
@@ -26,13 +21,6 @@ module Name
         @datasets << MultiJson.load(File.open(model).read)["meta"]["view"]["name"]
       end
       erb :form
-    end
-
-    #helpers
-    helpers do
-      def partial(file_name)
-        erb file_name, :layout => false
-      end
     end
 
   end

@@ -1,10 +1,11 @@
-<h1>Filter Results</h1>
-<form action="/filter" method="POST">
-  <% @datasets.each do |dataset| %>
-    <label for="data-set" class="checkbox"><%= dataset %><input type="checkbox" class="data-set-class" name="datasets[<%= dataset %>]"></label>
-  <% end %>
-</form>
-
+<div class="padLeft">
+  <h1>Filter Results</h1>
+  <form action="/filter" method="POST">
+    <% @datasets.each do |dataset| %>
+      <label for="data-set" class="checkbox"><%= dataset %><input type="checkbox" class="data-set-class" name="datasets[<%= dataset %>]"></label>
+    <% end %>
+  </form>
+</div>
 <div id="map-canvas"></div>
 
 <script type="text/javascript">
