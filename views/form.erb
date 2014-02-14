@@ -69,14 +69,15 @@
       clearMarkers(objectName());
     } else {
       $this.addClass("selected");
-      if (fileName == "data/Food-Scraps.json") {
+      if (fileName == "data/NYC-Cool-Roofs-Buildings.json") {
         $.getJSON(fileName, function(response) {
           for (var i = 0; i < response.data.length; i++) {
             var newLatLon = new google.maps.LatLng(response.data[i][13][1], response.data[i][13][2])
             addMarker(newLatLon, objectName());
           };
         });
-      } else if (fileName == "data/NYC-Cool-Roofs-Buildings.json") {
+      } 
+      if (fileName == "data/Food-Scraps.json") {
         $.getJSON(fileName, function(response) {
           for (var i = 0; i < response.data.length; i++) {
             var newLatLon = new google.maps.LatLng(response.data[i][10][1], response.data[i][10][2])
