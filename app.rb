@@ -1,7 +1,7 @@
 require 'bundler'
 Bundler.require
 
-# require 'sinatra/base'
+require 'sinatra/base'
 
 class Map < Sinatra::Application
 
