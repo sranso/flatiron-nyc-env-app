@@ -90,3 +90,4 @@ $.getJSON("/data/NYC-Cool-Roofs-Buildings.json", function(response) {
     });
   };
 });
+
