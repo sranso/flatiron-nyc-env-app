@@ -76,8 +76,7 @@
             addMarker(newLatLon, objectName());
           };
         });
-      } 
-      if (fileName == "data/Food-Scraps.json") {
+      } else if (fileName == "data/Food-Scraps.json") {
         $.getJSON(fileName, function(response) {
           for (var i = 0; i < response.data.length; i++) {
             var newLatLon = new google.maps.LatLng(response.data[i][10][1], response.data[i][10][2])

@@ -45,7 +45,7 @@ function initialize() {
 google.maps.event.addDomListener(window, 'load', initialize);
 
 // this will actually be passed in as an object... tbd how yet
-var datasetsShow = ["NYC Cool Roofs Buildings", "NYC Greenthumb Community Gardens"]
+var datasetsShow = ["NYC Cool Roofs Buildings", "Food Scraps"]
 var newData = []
 for (i = 0; i < datasetsShow.length; i++) {
   var fileName = datasetsShow[i].replace(" ", "-");
