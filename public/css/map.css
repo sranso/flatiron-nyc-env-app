@@ -16,3 +16,6 @@ html, body, #map-canvas {
 .padLeft {
   margin-left: 20px;
 }
+.btn-primary .caret,.btn-warning .caret,.btn-danger .caret,.btn-info .caret,.btn-success .caret,.btn-inverse .caret {
+  max-width: none;
+}
