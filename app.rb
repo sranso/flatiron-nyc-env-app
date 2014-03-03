@@ -17,7 +17,7 @@ class Map < Sinatra::Application
     Dir.glob('./public/data/*.json') do |model|
       @datasets << MultiJson.load(File.open(model).read)["meta"]["view"]["name"]
     end
-    erb :form
+    erb :map
   end
 
 end
